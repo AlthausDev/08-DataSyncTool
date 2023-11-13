@@ -33,18 +33,16 @@ rem Crear o agregar al archivo temporal con formato de CHANGELOG
     echo ## Cambios Recientes
     echo.
     echo ### %FechaHora%
-
+    echo.
     rem Bucle para acciones y descripciones
     for /L %%i in (1,1,5) do (
         rem Verificar si ambas variables están definidas
         if defined Acciones[%%i] (
             rem Agregar acción y descripción al archivo temporal
             call echo - **%%Acciones[%%i]%%**%%Descripciones[%%i]%%
-            echo.
         )
     )
 
-    echo.
     echo.
 ) > "%LogDirectorio%\%TempArchivo%"
 

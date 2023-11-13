@@ -26,7 +26,6 @@ rem Obtener la letra de la unidad del directorio del script
 for %%P in ("%ScriptDirectorio%") do set "Origen=%%~dP"
 
 rem Establecer las rutas de origen y destino
-::set "Origen=D:\"
 set "Destino=%UnidadUSB%\"
 
 
@@ -38,13 +37,13 @@ if not exist "%Destino%" (
 REM Eliminar archivos en el destino
 for /d %%I in ("%Destino%\*") do (
     if /i not "%%~nI"=="$RECYCLE.BIN" if /i not "%%~nI"=="System Volume Information" (
-::        RD /S /Q "%%I"
+        RD /S /Q "%%I"
         echo Se han eliminado los archivos en %%I
     )
 )
 
 REM Copiar archivos desde el origen hasta el destino
-::xcopy "%Origen%" "%Destino%" /e /k /y
+copy "%Origen%" "%Destino%" /e /k /y
 echo Se han copiado correctamente los archivos de %Origen% a %Destino%
 
 
@@ -57,7 +56,5 @@ set "Descripcion2=Se han copiado los archivos desde %Origen% a %Destino%
 
 
 rem Llamar al script changelog-generator.bat con las acciones y descripciones definidas
-call changelog-generator.bat
-
+call ChangelogGenerator.bat
 :FinScript
-@pause
