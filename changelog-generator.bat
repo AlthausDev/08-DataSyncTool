@@ -22,11 +22,11 @@ set "Acciones[3]=%Accion3%"
 set "Acciones[4]=%Accion4%"
 set "Acciones[5]=%Accion5%"
 
-set "Descripciones[1]=%Descripcion1%"
-set "Descripciones[2]=%Descripcion2%"
-set "Descripciones[3]=%Descripcion3%"
-set "Descripciones[4]=%Descripcion4%"
-set "Descripciones[5]=%Descripcion5%"
+set "Descripciones[1]=: %Descripcion1%"
+set "Descripciones[2]=: %Descripcion2%"
+set "Descripciones[3]=: %Descripcion3%"
+set "Descripciones[4]=: %Descripcion4%"
+set "Descripciones[5]=: %Descripcion5%"
 
 rem Crear o agregar al archivo temporal con formato de CHANGELOG
 (
@@ -39,7 +39,7 @@ rem Crear o agregar al archivo temporal con formato de CHANGELOG
         rem Verificar si ambas variables están definidas
         if defined Acciones[%%i] (
             rem Agregar acción y descripción al archivo temporal
-            call echo - %%Acciones[%%i]%% %%Descripciones[%%i]%%
+            call echo - **%%Acciones[%%i]%%**%%Descripciones[%%i]%%
             echo.
         )
     )
@@ -54,5 +54,6 @@ type "%LogDirectorio%\%LogArchivo%" | find /v "## Cambios Recientes" >> "%LogDir
 rem Sobrescribir CHANGELOG.md con el contenido del archivo temporal
 move /y "%LogDirectorio%\%TempArchivo%" "%LogDirectorio%\%LogArchivo%"
 
+echo.
 echo Registro completado.
 
